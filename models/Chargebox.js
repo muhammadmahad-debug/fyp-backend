@@ -13,6 +13,7 @@ const ChargeboxSchema = model(
           value: { type: String, required: true },
           label: { type: String, required: true },
         },
+        chargePointModel: { type: String, required: true },
         endpointAddress: { type: String, required: true },
       },
       address: {
