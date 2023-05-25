@@ -1,3 +1,5 @@
+/** @format */
+
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import httpError from "../util/http-error.js";
@@ -13,7 +15,7 @@ export const authenticate = async (req, res, next) => {
         const error = new httpError("Not Authorized,no token", 401);
         next(error);
       }
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_);
       req.user = await User.findById(decoded.id).select("-password");
       next();
     } catch (er) {
