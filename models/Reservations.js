@@ -13,7 +13,8 @@ const ReservationSchema = model(
       },
       reservationDate: { type: Date, required: true },
       reservationTime: { type: String, required: true },
-      isActiveReservation: { type: Boolean, default: true },
+      isActiveReservation: { type: Boolean, default: false },
+      isPeakTime: { type: Boolean, default: false },
     },
     { timestamps: true }
   )
