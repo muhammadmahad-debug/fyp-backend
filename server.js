@@ -8,6 +8,7 @@ import ChargeboxRoutes from "./routes/ChargeboxRouter.js";
 import DashboardRoutes from "./routes/DashboardRouter.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import ReservationRoutes from "./routes/ReservationRoutes.js";
+import stripeRoutes from "./routes/stripeRouter.js";
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use("/api/dashboard", DashboardRoutes);
 app.use("/api/auth", UserRoutes);
 //reservation
 app.use("/api/reservation", ReservationRoutes);
+app.use("/api/reservation", ReservationRoutes);
+app.use("/api/stripe", stripeRoutes);
 
 app.use((error, req, res, next) => {
   if (res.headerSent) {
