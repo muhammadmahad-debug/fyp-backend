@@ -40,8 +40,6 @@ const ChargeboxSchema = model(
         longitude: { type: Number, required: true },
         notes: { type: String, required: true },
         isPeakTime: { type: Boolean, default: false },
-      },
-      info: {
         RateApplied: { type: String, required: true },
         EstimatedCost: { type: Number, required: true },
         EstimatedKWH: { type: Number, required: true },
