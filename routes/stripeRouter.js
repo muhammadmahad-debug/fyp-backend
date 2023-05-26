@@ -3,7 +3,7 @@
 import express from "express";
 import {
  createPayment
-} from "../controller/StripeController";
+} from "../controller/StripeController.js";
 
 const router = express.Router();
 
