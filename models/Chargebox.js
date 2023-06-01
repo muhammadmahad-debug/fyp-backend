@@ -45,6 +45,7 @@ const ChargeboxSchema = model(
         EstimatedKWH: { type: Number },
         TimeReserved: { type: Number },
       },
+      slots : []
     },
     {
       timestamps: true,
