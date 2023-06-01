@@ -2,12 +2,13 @@
 
 import stripe from "stripe";
 import ReservationSchema from "../models/Reservations.js";
+import ChargeboxSchema from "../models/Chargebox.js";
 
 const stripeInstance = stripe(
   "sk_test_51H64odEGhJpVZtxXTBVcvT34NrAZp0A5x5gdA32IAgN6Ac6adoKrOPMqiKaaRmf0sQ8iUvFVbIIvjqn1UXjsixTC00hWhpxTvu"
 );
 export const createPayment = async (req, res, next) => {
- const {token , date , chargeBoxId } = req.body; // Token received from the client-side Stripe Checkout component
+ const {token , date , chargeBoxId , slot } = req.body; // Token received from the client-side Stripe Checkout component
 
   try {
     await stripeInstance.charges.create({
@@ -16,6 +17,11 @@ export const createPayment = async (req, res, next) => {
       source: token.id,
       description: 'Thanks for the Reservation'
     });
+   await ChargeboxSchema.findOneAndUpdate(
+  { _id: chargeBoxId, "slots.id": slot.id },
+  { $set: { "slots.$.disabled": true } },
+  { new: true },
+);
     const reserve = new ReservationSchema({
       chargeboxId: chargeBoxId,
       reservationDate: date,
