@@ -18,8 +18,8 @@ export const createPayment = async (req, res, next) => {
       description: 'Thanks for the Reservation'
     });
    await ChargeboxSchema.findOneAndUpdate(
-  { _id: chargeBoxId, "slots.id": slot.id },
-  { $set: { "slots.$.disabled": true } },
+  { _id: chargeBoxId,},
+  { $set: { "slots": slot } },
   { new: true },
 );
     const reserve = new ReservationSchema({
