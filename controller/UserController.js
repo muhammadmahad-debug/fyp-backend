@@ -62,6 +62,18 @@ export const getUser = async (req, res, next) => {
 
 //   res.status(201).json({ user: user.toObject({ getters: true }) });
 // };
+export const creatUser = async (req, res, next) => {
+  const { email, firstName  , lastName , firebaseId } = req.body;
+  try {
+    const user = await new User({ email, name: `${firstName} ${lastName}`, firebaseId });
+    await user.save()
+    res.status(200).json(user);
+  } catch (error) {
+    console.log("error", error);
+    const err = new HttpError("something went wrong, please try again", 500);
+    return next(err);
+  }
+};
 
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
