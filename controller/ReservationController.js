@@ -6,7 +6,7 @@ import HttpError from "../util/http-error.js";
 
 export const getReservations = async (req, res, next) => {
   try {
-    const reservations = await Reservations.find();
+    const reservations = await Reservations.find().populate('userId');
     res.status(200).json(reservations);
   } catch (error) {
     console.log("error", error);
@@ -33,6 +33,7 @@ export const addReserve = async (req, res, next) => {
   try {
     const { firebaseId, ...rest } = req.body;
     const user  = User.findOne({firebaseId })
+    console.log("🚀 ~ file: ReservationController.js:36 ~ addReserve ~ user:", user)
     const reserve = new Reservations({...rest , userId :user._id }); // Updated from Reserve to Reservations
     const createdReserve = await reserve.save();
     res.status(200).json(createdReserve);
