@@ -13,6 +13,11 @@ const ReservationSchema = model(
       },
       reservationDate: { type: Date, required: true },
       isActiveReservation: { type: Boolean, default: false },
+       chargeboxId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: false,
+      },
     },
     { timestamps: true }
   )

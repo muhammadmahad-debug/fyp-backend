@@ -1,6 +1,7 @@
 /** @format */
 
 import Reservations from "../models/Reservations.js";
+import User from "../models/User.js";
 import HttpError from "../util/http-error.js";
 
 export const getReservations = async (req, res, next) => {
@@ -30,8 +31,9 @@ export const getReserve = async (req, res, next) => {
 
 export const addReserve = async (req, res, next) => {
   try {
-    const newReserve = req.body;
-    const reserve = new Reservations(newReserve); // Updated from Reserve to Reservations
+    const { firebaseId, ...rest } = req.body;
+    const user  = User.findOne({firebaseId })
+    const reserve = new Reservations({...rest , userId :user._id }); // Updated from Reserve to Reservations
     const createdReserve = await reserve.save();
     res.status(200).json(createdReserve);
   } catch (error) {
