@@ -7,6 +7,7 @@ import { connectDb } from "./config/db.js";
 import ChargeboxRoutes from "./routes/ChargeboxRouter.js";
 import DashboardRoutes from "./routes/DashboardRouter.js";
 import UserRoutes from "./routes/UserRoutes.js";
+import CompanyRoutes from "./routes/CompanyRoutes.js"
 import ReservationRoutes from "./routes/ReservationRoutes.js";
 import stripeRoutes from "./routes/stripeRouter.js";
 
@@ -27,6 +28,9 @@ app.use(cors());
 app.use("/api/chargeboxes", ChargeboxRoutes);
 app.use("/api/dashboard", DashboardRoutes);
 app.use("/api/auth", UserRoutes);
+app.use('/api/company', CompanyRoutes)
+
+
 //reservation
 app.use("/api/reservation", ReservationRoutes);
 app.use("/api/reservation", ReservationRoutes);

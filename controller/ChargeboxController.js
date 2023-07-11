@@ -11,10 +11,10 @@ export const getChargeboxes = async (req, res, next) => {
   }
 };
 
-export const getChargebox = async (req, res, next) => {
+export const getChargeboxByCompany = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const chargebox = await Chargebox.findById(id);
+    const chargebox = await Chargebox.find({company:id});
     if (!chargebox) {
       const err = new HttpError("chargebox not found", 404);
       next(err);
@@ -25,6 +25,21 @@ export const getChargebox = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getChargebox = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const chargebox = await Chargebox.findById(id)
+    if (!chargebox) {
+      const err = new HttpError('chargebox not found', 404)
+      next(err)
+    }
+    res.status(200).json(chargebox)
+  } catch (error) {
+    console.log('error', error)
+    next(error)
+  }
+}
 
 export const addChargebox = async (req, res, next) => {
   try {

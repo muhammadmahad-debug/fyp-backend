@@ -25,6 +25,17 @@ export const getUser = async (req, res, next) => {
   }
 };
 
+export const getUserByCompany = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    console.log('id', id)
+    const user = await User.findById({comapny: id})
+    res.json(user)
+  } catch (error) {
+    console.log(error)
+    return next(err)
+  }
+}
 // const signup = async (req, res, next) => {
 //   const errors = validationResult(req);
 //   if (!errors.isEmpty()) {

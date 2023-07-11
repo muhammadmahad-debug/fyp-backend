@@ -1,9 +1,9 @@
 /** @format */
 
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const ChargeboxSchema = model(
-  "Chargebox",
+  'Chargebox',
   new Schema(
     {
       name: { type: String },
@@ -45,12 +45,18 @@ const ChargeboxSchema = model(
         EstimatedKWH: { type: Number },
         TimeReserved: { type: Number },
       },
-      slots : []
+      slots: [],
+
+      company: {
+        type: Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true,
+      },
     },
     {
       timestamps: true,
     }
   )
-);
+)
 
 export default ChargeboxSchema;

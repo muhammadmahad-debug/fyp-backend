@@ -1,15 +1,20 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose'
 // import uniqueValidator from "mongoose-unique-validator";
 
 const userSchema = model(
-  "User",
+  'User',
   new Schema({
-    email: { type: String,  unique: true },
+    email: { type: String, unique: true },
     password: { type: String, minLength: 6 },
-    role: { type: String,  default: "Admin" },
-    name: { type: String,  },
-    firebaseId: { type: String,  }
+    role: { type: String, enum: ['admin', 'companyAdmin'] },
+    name: { type: String },
+    firebaseId: { type: String },
+    company: {
+      type: Schema.Types.ObjectId,
+      ref: 'Company',
+      required: false,
+    },
   })
-);
+)
 
-export default userSchema;
+export default userSchema
