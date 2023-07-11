@@ -3,13 +3,13 @@
 import express from "express";
 import cors from "cors";
 import env from "dotenv";
-import { connectDb } from "./config/db.js";
-import ChargeboxRoutes from "./routes/ChargeboxRouter.js";
-import DashboardRoutes from "./routes/DashboardRouter.js";
-import UserRoutes from "./routes/UserRoutes.js";
-import CompanyRoutes from "./routes/CompanyRoutes.js"
-import ReservationRoutes from "./routes/ReservationRoutes.js";
-import stripeRoutes from "./routes/stripeRouter.js";
+import { connectDb } from "../config/db.js";
+import ChargeboxRoutes from "../routes/ChargeboxRouter.js";
+import DashboardRoutes from "../routes/DashboardRouter.js";
+import UserRoutes from "../routes/UserRoutes.js";
+import CompanyRoutes from "../routes/CompanyRoutes.js"
+import ReservationRoutes from "../routes/ReservationRoutes.js";
+import stripeRoutes from "../routes/stripeRouter.js";
 
 const app = express();
 

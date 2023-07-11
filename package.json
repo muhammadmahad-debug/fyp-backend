@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "node api/index.js",
+    "server": "nodemon api/index.js",
     "seed": "node seeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
